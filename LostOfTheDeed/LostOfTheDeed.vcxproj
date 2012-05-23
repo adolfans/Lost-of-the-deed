@@ -32,9 +32,13 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\DirectX9.props" />
+    <Import Project="..\Lua.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\DirectX9.props" />
+    <Import Project="..\Lua.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -50,11 +54,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/D "DX9" %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>fxc /T fx_2_0 /Fo transform.fxo transform.fx
+fxc /T fx_2_0 /Fo shader_scene.fxo shader_scene.fx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -65,6 +74,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/D "DX9" %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -72,8 +82,72 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PreBuildEvent>
+      <Command>fxc /T fx_2_0 /Fo transform.fxo transform.fx
+fxc /T fx_2_0 /Fo shader_scene.fxo shader_scene.fx</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MyGame3DDevice.cpp" />
+    <ClCompile Include="src\MyGame3DEffect.cpp" />
+    <ClCompile Include="src\MyGameClock.cpp" />
+    <ClCompile Include="src\MyGameDecoration.cpp" />
+    <ClCompile Include="src\MyGameGrid.cpp" />
+    <ClCompile Include="src\MyGameInstance.cpp" />
+    <ClCompile Include="src\MyGameLevel.cpp" />
+    <ClCompile Include="src\MyGameLua.cpp" />
+    <ClCompile Include="src\MyGameMessage.cpp" />
+    <ClCompile Include="src\MyGameMessageBox.cpp" />
+    <ClCompile Include="src\MyGameNotify.cpp" />
+    <ClCompile Include="src\MyGameSettings.cpp" />
+    <ClCompile Include="src\MyGameTextBase.cpp" />
+    <ClCompile Include="src\MyGameTexture.cpp" />
+    <ClCompile Include="src\MyGameUIAnimation.cpp" />
+    <ClCompile Include="src\MyGameUIDialog.cpp" />
+    <ClCompile Include="src\MyGameUISprite.cpp" />
+    <ClCompile Include="src\MyGameUISpriteMain.cpp" />
+    <ClCompile Include="src\MyGameUISpriteProcess.cpp" />
+    <ClCompile Include="src\MyGameUIText.cpp" />
+    <ClCompile Include="src\MyGameVertexBuffer.cpp" />
+    <ClCompile Include="src\MyGameWindow.cpp" />
+    <ClCompile Include="src\MyNewGameInstance.cpp" />
+    <ClCompile Include="src\stdafx.cpp" />
+    <ClCompile Include="src\testLoadObjFile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\MyGame3DDevice.h" />
+    <ClInclude Include="src\MyGame3DEffect.h" />
+    <ClInclude Include="src\MyGameClock.h" />
+    <ClInclude Include="src\MyGameDecoration.h" />
+    <ClInclude Include="src\MyGameFunctions.h" />
+    <ClInclude Include="src\MyGameGrid.h" />
+    <ClInclude Include="src\MyGameInstance.h" />
+    <ClInclude Include="src\MyGameLevel.h" />
+    <ClInclude Include="src\MyGameLua.h" />
+    <ClInclude Include="src\MyGameMessage.h" />
+    <ClInclude Include="src\MyGameMessageBox.h" />
+    <ClInclude Include="src\MyGameNotify.h" />
+    <ClInclude Include="src\MyGameSettings.h" />
+    <ClInclude Include="src\MyGameTextBase.h" />
+    <ClInclude Include="src\MyGameTexture.h" />
+    <ClInclude Include="src\MyGameUIAnimation.h" />
+    <ClInclude Include="src\MyGameUIDialog.h" />
+    <ClInclude Include="src\MyGameUISprite.h" />
+    <ClInclude Include="src\MyGameUISpriteMain.h" />
+    <ClInclude Include="src\MyGameUISpriteProcess.h" />
+    <ClInclude Include="src\MyGameUIText.h" />
+    <ClInclude Include="src\MyGameVertexBuffer.h" />
+    <ClInclude Include="src\MyGameWindow.h" />
+    <ClInclude Include="src\MyNewGameInstance.h" />
+    <ClInclude Include="src\Resource.h" />
+    <ClInclude Include="src\stdafx.h" />
+    <ClInclude Include="src\targetver.h" />
+    <ClInclude Include="src\testLoadObjFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\testMyWorld1.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
